@@ -1,7 +1,8 @@
-#Utils for fixing shit
+# Utils for fixing shit
 import random
 from cell import Cell
 import consts as consts
+
 
 def rand_color():
     cyan = (0, 255, 255)
@@ -13,13 +14,15 @@ def rand_color():
     COLORS = [cyan, yellow, red, green, blue, pink]
     return random.choice(COLORS)
 
+
 def generate_board():
     list = []
     x = 0
     y = 0
     for i in range(0, consts.BOARD_SIZE):
         for j in range(0, consts.BOARD_SIZE):
-            list.append(Cell(x, y, rand_color(), False, None, None, None, None))
+            list.append(Cell(x, y, rand_color(),
+                             False, None, None, None, None))
             x += consts.CELL_SIZE
         x = 0
         y += consts.CELL_SIZE
@@ -28,11 +31,11 @@ def generate_board():
 
 def fix_links(arr, board_size):
     counter = 0
-    for i in range(len(arr)):        
+    for i in range(len(arr)):
         if counter == 0:
             arr[i].right = arr[i+1]
             counter += 1
-        
+
             if i - consts.BOARD_SIZE >= 0:
                 arr[i].top = arr[i-consts.BOARD_SIZE]
 
@@ -50,7 +53,7 @@ def fix_links(arr, board_size):
         else:
             arr[i].right = arr[i+1]
             arr[i].left = arr[i-1]
-            counter +=1
+            counter += 1
 
             if i - consts.BOARD_SIZE >= 0:
                 arr[i].top = arr[i-consts.BOARD_SIZE]
