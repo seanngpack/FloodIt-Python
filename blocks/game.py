@@ -5,7 +5,6 @@ import utils as utils
 from cell import Cell
 import consts as consts
 
-
 class Game():
 
     def __init__(self, board, flooded=None, to_flood=None, current_color=None):
@@ -46,17 +45,14 @@ class Game():
 
             for cell2 in neighbors:
                 if cell2 != None:
-                    if not cell2.flooded and cell2.color == self.current_color and not (cell2 in toFloodLater):
-                        print('adding ' + str(cell.x) + ' ' + str(cell.y))
+                    if not cell2.flooded and cell2.color == self.current_color and not (cell2 in toFloodLater):                        
                         toFloodLater.append(cell2)
-                    elif cell2.flooded and not cell2.color == self.current_color and not (cell2 in toFloodLater):
-                        print('adding ' + str(cell.x) + ' ' + str(cell.y))
+                    elif cell2.flooded and not cell2.color == self.current_color and not (cell2 in toFloodLater):                        
                         toFloodLater.append(cell2)
 
         for cell in self.to_flood:
             self.flooded.append(cell)
-            self.draw_flooded(cell)
-            print('drawing ' + str(cell.x) + ' ' + str(cell.y))
+            self.draw_flooded(cell)            
 
         self.to_flood = toFloodLater
         self.draw_board()
@@ -71,13 +67,11 @@ class Game():
     def game_loop(self, done):
         while not self.done:
             for event in pygame.event.get():
+                # if you quit
                 if event.type == pygame.QUIT:
                     self.done = True
-
-                #consts.GAME_DISPLAY.fill((255, 255, 255))
                 
-                # self.draw_board()
-
+                # if you click
                 if event.type == pygame.MOUSEBUTTONUP:
                     if len(self.to_flood) == 0:
                         pos = pygame.mouse.get_pos()

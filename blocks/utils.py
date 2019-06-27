@@ -3,7 +3,6 @@ import random
 from cell import Cell
 import consts as consts
 
-
 def rand_color():
     cyan = (0, 255, 255)
     yellow = (255, 255, 0)
@@ -13,7 +12,6 @@ def rand_color():
     pink = (255, 100, 255)
     COLORS = [cyan, yellow, red, green, blue, pink]
     return random.choice(COLORS)
-
 
 def generate_board():
     list = []
